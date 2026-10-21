@@ -1,0 +1,65 @@
+/* appDNA design tokens v1.0 (2026-10). Source of truth: design-system/tokens.json */
+
+:root {
+  /* Indigo */
+  --color-indigo-100: #B5A7F8;
+  --color-indigo-300: #907BF0;
+  --color-indigo-500: #2E05E9;
+  --color-indigo-700: #1F039B;
+  --color-indigo-900: #0F024E;
+
+  /* Mint */
+  --color-mint-100: #D9FFF8;
+  --color-mint-300: #8CE0D2;
+  --color-mint-500: #34D1B6;
+  --color-mint-600: #4ABAA7;
+  --color-mint-900: #11463D;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-mist: #EFF1F2;
+  --color-line: #E3E4EA;
+  --color-steel: #8A8CA0;
+  --color-slate: #5E6075;
+  --color-ink: #07081F;
+
+  /* Strands: logo mark only */
+  --color-strand-magenta: #E600F0;
+  --color-strand-cyan: #2AF0E2;
+
+  /* Feedback */
+  --color-success: var(--color-mint-500);
+  --color-warning: #FFB340;
+  --color-error: #D1346E;
+
+  /* Roles */
+  --color-brand: var(--color-indigo-500);
+  --color-on-brand: var(--color-white);
+  --color-action: var(--color-mint-500);
+  --color-on-action: var(--color-ink);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-slate);
+  --color-link: var(--color-indigo-500);
+  --color-link-hover: var(--color-indigo-700);
+  --color-surface: var(--color-white);
+  --color-surface-quiet: var(--color-mist);
+  --color-border: var(--color-line);
+
+  /* Type */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Sizes */
+  --size-button: 56px;
+  --size-tag: 32px;
+  --container-max: 1200px;
+  --container-gutter: clamp(20px, 5vw, 64px);
+  --section-padding: clamp(72px, 9vw, 128px);
+}

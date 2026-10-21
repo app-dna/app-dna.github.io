@@ -1,0 +1,28 @@
+# GitHub Pages builds this site with Jekyll. Only the legal pages use it:
+# every Markdown file in legal/<group>/ becomes a page with _layouts/default.html.
+
+title: appDNA
+url: https://appdna.de
+permalink: pretty
+
+exclude:
+  - README.md
+
+defaults:
+  - scope:
+      path: "legal"
+    values:
+      layout: default
+
+# Use the first "# Heading" of a Markdown file as its title.
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: false
+
+# Display names for the folders in legal/. Folders not listed here show their folder name.
+legal_groups:
+  legal: Legal
+  appdna: appDNA
+  date: Date
+  drinkmeter: DrinkMeter

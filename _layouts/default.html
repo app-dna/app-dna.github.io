@@ -1,0 +1,83 @@
+{%- assign page_folder = page.dir | split: "/" | last -%}
+{%- assign page_group = site.legal_groups[page_folder] | default: page_folder -%}
+{%- assign legal_docs = site.pages | where_exp: "p", "p.path contains 'legal/'" | where_exp: "p", "p.name != 'index.md'" | sort: "path" -%}
+{%- assign legal_groups = legal_docs | group_by_exp: "p", "p.dir" -%}
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: "Legal" }}{% if page_group != "Legal" %} – {{ page_group }}{% endif %} | appDNA</title>
+  <meta name="description" content="{{ page.description | default: 'Imprint, privacy policies and terms of use for appDNA and its apps.' }}">
+  <meta name="theme-color" content="#2E05E9">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="icon" href="{{ '/assets/img/appdna-app-icon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header on-dark">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="appDNA home">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke-width="3.5"/><path d="M8 56A48 48 0 0 0 56 8" stroke-width="5.5"/><path d="M12 8A44 44 0 0 1 56 52" stroke-width="5.5"/></g></svg>
+          <span class="wordmark">appDNA</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="{{ '/#apps' | relative_url }}">Apps</a></li>
+          <li><a href="{{ '/#about' | relative_url }}">About</a></li>
+          <li><a href="{{ '/#contact' | relative_url }}">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="page-intro">
+        <p class="label">{{ page_group }}</p>
+        <h1 class="page-title">{{ page.title | default: "Legal" }}</h1>
+        {%- if page.updated %}
+        <p class="page-lead">Last updated {{ page.updated }}</p>
+        {%- elsif page.description %}
+        <p class="page-lead">{{ page.description }}</p>
+        {%- endif %}
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container legal-layout">
+      <nav class="legal-nav" aria-label="Legal documents">
+        {%- for group in legal_groups %}
+        {%- assign folder = group.name | split: "/" | last %}
+        <div class="legal-group">
+          <h2>{{ site.legal_groups[folder] | default: folder }}</h2>
+          {%- for doc in group.items %}
+          <a href="{{ doc.url | relative_url }}"{% if doc.url == page.url %} aria-current="page"{% endif %}>{{ doc.title | default: doc.name }}</a>
+          {%- endfor %}
+        </div>
+        {%- endfor %}
+      </nav>
+      <div class="doc-wrap">
+        <article class="doc-body">
+          {{ content }}
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer on-dark">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke="#FFFFFF" stroke-width="3.5"/><path d="M8 56A48 48 0 0 0 56 8" stroke="#2AF0E2" stroke-width="5.5"/><path d="M12 8A44 44 0 0 1 56 52" stroke="#E600F0" stroke-width="5.5"/></g></svg>
+        <span class="wordmark">appDNA</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="{{ '/legal/appdna/imprint/' | relative_url }}">Imprint</a></li>
+        <li><a href="{{ '/legal/appdna/privacy-policy/' | relative_url }}">Privacy Policy</a></li>
+        <li><a href="{{ '/legal/' | relative_url }}">App legal</a></li>
+        <li class="copyright">© {{ site.time | date: "%Y" }} appDNA · München</li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

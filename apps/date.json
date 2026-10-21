@@ -1,0 +1,14 @@
+{
+  "name": "Date",
+  "subtitle": "ExifTool for WhatsApp",
+  "description": "Restored a WhatsApp backup on a new phone and now every picture shows the same day? Date reads the original date from each file name and writes it back, so your gallery sorts properly again.",
+  "icon": "calendar",
+  "tile": "indigo",
+  "tags": ["Android", "Keeps existing Exif data"],
+  "link": { "label": "Get it on Google Play", "url": "https://play.google.com/store/apps/details?id=com.appDNA.exiftoolforWA" },
+  "note": "Not affiliated with WhatsApp Inc.",
+  "legal": [
+    { "label": "Privacy Policy", "url": "legal/date/privacy-policy/" },
+    { "label": "Terms of Use", "url": "legal/date/terms-of-use/" }
+  ]
+}

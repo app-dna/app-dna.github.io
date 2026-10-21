@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="appDNA">
+  <title>appDNA</title>
+  <!-- Single color for Indigo (#2E05E9) and other dark grounds. -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+    <path d="M45.5 38 H53.7 M39.7 44 H55.3 M31.2 50 H55.95" stroke-width="3.5"/>
+    <path d="M8 56 A48 48 0 0 0 56 8" stroke-width="5.5"/>
+    <path d="M12 8 A44 44 0 0 1 56 52" stroke-width="5.5"/>
+  </g>
+</svg>
