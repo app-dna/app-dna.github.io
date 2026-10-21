@@ -2,6 +2,8 @@
 {%- assign page_group = site.legal_groups[page_folder] | default: page_folder -%}
 {%- assign legal_docs = site.pages | where_exp: "p", "p.path contains 'legal/'" | where_exp: "p", "p.name != 'index.md'" | sort: "path" -%}
 {%- assign legal_groups = legal_docs | group_by_exp: "p", "p.dir" -%}
+{%- assign active_group = page.dir | remove_first: '/legal/' | split: '/' | first -%}
+{%- assign active_group_label = site.legal_groups[active_group] | default: active_group -%}
 <!doctype html>
 <html lang="{{ page.lang | default: 'en' }}">
 <head>
@@ -23,7 +25,7 @@
     <div class="container">
       <nav class="nav" aria-label="Main">
         <a class="brand" href="{{ '/' | relative_url }}" aria-label="appDNA home">
-          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke-width="3.5"/><path d="M8 56A48 48 0 0 0 56 8" stroke-width="5.5"/><path d="M12 8A44 44 0 0 1 56 52" stroke-width="5.5"/></g></svg>
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke-width="3.5"/><path d="M19 15.5c0-4.2 3.4-7.6 7.6-7.6h4.7c3.5 0 6.3 2.8 6.3 6.3v2.1c0 3.2-2.6 5.8-5.8 5.8h-15.3V15.5Z" stroke-width="3.5"/><path d="M12 16.5h26.4M16.2 26.1h18.6" stroke-width="3.5"/></g></svg>
           <span class="wordmark">appDNA</span>
         </a>
         <ul class="nav-links">
@@ -47,15 +49,26 @@
   <main id="main">
     <div class="container legal-layout">
       <nav class="legal-nav" aria-label="Legal documents">
-        {%- for group in legal_groups %}
-        {%- assign folder = group.name | split: "/" | last %}
-        <div class="legal-group">
-          <h2>{{ site.legal_groups[folder] | default: folder }}</h2>
-          {%- for doc in group.items %}
-          <a href="{{ doc.url | relative_url }}"{% if doc.url == page.url %} aria-current="page"{% endif %}>{{ doc.title | default: doc.name }}</a>
+        {%- if active_group == "" or active_group == "legal" %}
+          {%- for group in legal_groups %}
+          {%- assign folder = group.name | split: "/" | last %}
+          <div class="legal-group">
+            <h2>{{ site.legal_groups[folder] | default: folder }}</h2>
+            {%- for doc in group.items %}
+            <a href="{{ doc.url | relative_url }}"{% if doc.url == page.url %} aria-current="page"{% endif %}>{{ doc.title | default: doc.name }}</a>
+            {%- endfor %}
+          </div>
           {%- endfor %}
-        </div>
-        {%- endfor %}
+        {%- else %}
+          <div class="legal-group">
+            <h2>{{ active_group_label }}</h2>
+            {%- for doc in legal_docs %}
+            {%- if doc.dir == page.dir %}
+            <a href="{{ doc.url | relative_url }}"{% if doc.url == page.url %} aria-current="page"{% endif %}>{{ doc.title | default: doc.name }}</a>
+            {%- endif %}
+            {%- endfor %}
+          </div>
+        {%- endif %}
       </nav>
       <div class="doc-wrap">
         <article class="doc-body">
@@ -68,7 +81,7 @@
   <footer class="site-footer on-dark">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke="#FFFFFF" stroke-width="3.5"/><path d="M8 56A48 48 0 0 0 56 8" stroke="#2AF0E2" stroke-width="5.5"/><path d="M12 8A44 44 0 0 1 56 52" stroke="#E600F0" stroke-width="5.5"/></g></svg>
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke-linecap="round"><path d="M45.5 38H53.7M39.7 44H55.3M31.2 50H55.95" stroke="#FFFFFF" stroke-width="3.5"/><path d="M19 15.5c0-4.2 3.4-7.6 7.6-7.6h4.7c3.5 0 6.3 2.8 6.3 6.3v2.1c0 3.2-2.6 5.8-5.8 5.8h-15.3V15.5Z" stroke="#FFFFFF" stroke-width="3.5"/><path d="M12 16.5h26.4M16.2 26.1h18.6" stroke="#FFFFFF" stroke-width="3.5"/></g></svg>
         <span class="wordmark">appDNA</span>
       </div>
       <ul class="footer-links">
