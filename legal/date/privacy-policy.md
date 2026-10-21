@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Last updated May 16, 2023
+Last updated Oct 21, 2026
 
 This privacy notice for appDNA by Lukas Faber ("**Company**," "**we**," "**us**," or "**our**"), describes how and why we might collect, store, use, and/or share ("**process**") your information when you use our services ("**Services**"), such as when you:
 
