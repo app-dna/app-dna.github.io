@@ -1,3 +1,4 @@
 {
-  "apps": ["date.json"]
+  "apps": ["date.json","kinetic,json"]
+  
 }
