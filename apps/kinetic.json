@@ -1,0 +1,13 @@
+{
+  "name": "Kinetic",
+  "subtitle": "Manage your workouts",
+  "description": "Track your workouts, save your progress and become a better gymrat",
+  "icon": "calendar",
+  "tile": "indigo",
+  "tags": ["iOS", "Android"],
+  "link": { },
+  "note": "Preview",
+  "legal": [
+    { "label": "Privacy Policy", "url": "legal/kinetic/privacy-policy/" },
+  ]
+}
